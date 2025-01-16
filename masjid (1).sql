@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Okt 2024 pada 21.24
+-- Waktu pembuatan: 16 Jan 2025 pada 16.37
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.1.25
 
@@ -38,8 +38,37 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`adminid`, `adminemail`, `adminpassword`) VALUES
-(1, 'admin@richard.id', 'admin'),
-(3, 'eko@gmail.com', 'Eko');
+(3, 'eko@gmail.com', 'Eko'),
+(4, 'rang@gmail.com', '123');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `anggota`
+--
+
+CREATE TABLE `anggota` (
+  `anggotaid` int(11) NOT NULL,
+  `nama` varchar(255) DEFAULT NULL,
+  `anggotaemail` varchar(50) NOT NULL,
+  `anggotapassword` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `anggota`
+--
+
+INSERT INTO `anggota` (`anggotaid`, `nama`, `anggotaemail`, `anggotapassword`) VALUES
+(5, 'zakisalman', 'zaki@gmail.com', '123123'),
+(6, 'Rangga', 'qwe@gmail.com', '123123'),
+(7, 'Ikhlas ramadhan', 'iklhlas@gmail.com', '123123'),
+(8, 'Faiq ramadhan', 'faiq@gmail.com', '123123'),
+(9, 'Ipankurnia', 'ipan@gmail.com', '123123'),
+(10, 'Alfikri', 'al@gmail.com', '123123'),
+(11, 'Irfin', 'Irfin@gmail.com', '123123'),
+(12, 'Dimas', 'dimas@gmail.com', '123123'),
+(13, 'AprilLeo', 'leo@gmail.com', '123123'),
+(14, 'Ibraham', 'ibraham@gmail.com', '123123');
 
 -- --------------------------------------------------------
 
@@ -7281,6 +7310,57 @@ INSERT INTO `districts` (`id`, `regency_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `kegiatan`
+--
+
+CREATE TABLE `kegiatan` (
+  `id` int(11) NOT NULL,
+  `nama_kegiatan` varchar(255) NOT NULL,
+  `tanggal` date NOT NULL,
+  `waktu` time NOT NULL,
+  `deskripsi` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `kegiatan`
+--
+
+INSERT INTO `kegiatan` (`id`, `nama_kegiatan`, `tanggal`, `waktu`, `deskripsi`) VALUES
+(3, 'Memanah', '2024-10-18', '16:25:00', 'aasdasdasd'),
+(8, 'Mengaji Bersama', '2024-10-23', '16:15:00', 'Ayo Mencarii keberkahan'),
+(10, 'Bela diri', '2024-10-31', '08:15:00', 'Ayoo Ikutin di ajar oleh Pak Eko'),
+(11, 'Diskusi keislaman', '2024-12-10', '20:00:00', 'wajib di ikuti seluruh remaja masjid');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pilihan_kegiatan`
+--
+
+CREATE TABLE `pilihan_kegiatan` (
+  `id` int(11) NOT NULL,
+  `anggota_id` int(11) NOT NULL,
+  `kegiatan_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `pilihan_kegiatan`
+--
+
+INSERT INTO `pilihan_kegiatan` (`id`, `anggota_id`, `kegiatan_id`) VALUES
+(17, 5, 3),
+(19, 7, 10),
+(20, 9, 8),
+(21, 10, 11),
+(22, 11, 10),
+(24, 13, 3),
+(25, 14, 11),
+(26, 5, 11),
+(27, 6, 10);
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `provinces`
 --
 
@@ -7882,7 +7962,16 @@ INSERT INTO `user` (`userid`, `useremail`, `userpassword`, `tgldaftar`) VALUES
 (1, 'guest@richard.id', 'guest', '2020-08-12 02:22:41'),
 (6, 'me@richard.id', 'guest', '2020-08-12 02:22:41'),
 (26, 'rangga@gmail.com', '123123', '2024-10-04 18:19:41'),
-(27, 'saputra@gmail.com', '123123', '2024-10-06 15:03:03');
+(27, 'saputra@gmail.com', '123123', '2024-10-06 15:03:03'),
+(28, 'asd@gmail.com', '123123', '2024-10-10 20:30:59'),
+(29, 'alfikir@gmail.com', '123123', '2024-11-06 14:24:23'),
+(30, 'nopal@gmail.com', '123123', '2024-11-06 14:33:42'),
+(31, 'faris@gmail.com', '123123', '2024-11-06 14:42:39'),
+(32, 'alfikri@gmail.com', '123123', '2024-11-06 14:49:34'),
+(33, 'hasan@gmail.com', '123123', '2024-11-06 14:55:11'),
+(34, 'mulyadi@gmail.com', '123123', '2024-11-06 15:01:35'),
+(35, 'haikal@gmail.com', '123123', '2024-11-06 15:06:36'),
+(36, 'ra@gmail.com', '123123', '2024-12-04 09:41:29');
 
 -- --------------------------------------------------------
 
@@ -7939,7 +8028,15 @@ INSERT INTO `userdata` (`userdataid`, `userid`, `nisn`, `nik`, `namalengkap`, `j
 (2, 1, '0001919919', '3172050101010002', 'Testing Aja Sih', 'L', 'Jakarta', '2020-08-05', 'Di Jakarta Aja Sih', '31', '3101', '3101010', '3101010003', 'Buddha', '083898900035', '3172938383838838', 'Warbyasah', 'SD', 'Tidak Bekerja', '3.000.000-5.000.000', '083898000000000', '3172038398230020', 'Yaokedeh', 'SD', 'Tidak Bekerja', '>20.000.000', '08129830299933', '3172939200200202', 'Waliansyah', 'TNI/Polri', '2008822', '982719129', 'SMP Negeri Batang', 'images/foto/foto_0001919919.jpg', 'images/ijazahdepan/ijazahdpn_0001919919.png', 'images/ijazahbelakang/ijazahblkg_0001919919.png', 'Verified', '2020-08-14'),
 (3, 25, '123131313131', '1234425256514114', 'rasdasd', 'L', 'asdasd', '2024-10-17', 'kjkljlkjlkj', '51', '5106', '5106020', '5106020003', 'Islam', '085251234551', '', 'asjdkasjdkl', 'SD', 'Tidak Bekerja', '<500.000', '08808888888', '3213545646464646', 'jkljkljlkjlkjklj', 'SMP', 'PNS', '500.000-1.000.000', '08129830299933', '2351312315464654', 'kjljkljkljlklj', 'Wiraswasta', '088858261651231', 'jkhkjhkjhk', 'SMP Negeri Batang', 'images/foto/foto_123131313131.jpg', 'images/ijazahdepan/ijazahdpn_123131313131.jpg', 'images/ijazahbelakang/ijazahblkg_123131313131.jpg', 'Verified', '2024-10-02'),
 (4, 26, '112312', '123123', 'earar', 'L', 'adadadad', '2024-10-02', 'asdadas', '11', '1107', '1107062', '1107062026', 'Islam', '123123123', '12313123', 'asdasd', 'SD', 'Wiraswasta', '<500.000', '12312312312', '12313123', 'eaeae', 'SD', 'Tidak Bekerja', '<500.000', '123123123123', '123123123', '12312312312321', 'Wiraswasta', '1231312312', '982719129', 'SMP Negeri Batang', 'images/foto/foto_112312.jpg', 'images/ijazahdepan/ijazahdpn_112312.jpg', 'images/ijazahbelakang/ijazahblkg_112312.jpg', 'Verified', '2024-10-06'),
-(5, 0, 'asdasdasd', '231231', 'rasdasd', 'L', 'dfgdfggf', '2024-10-03', 'kljlkjkljlkjlkjkljkljklj', '11', '1107', '1107062', '1107062026', 'Islam', '085251234551', '1231', '231231', '31231', '23123123', '1231231', '2312312312312', '123123', '1adas', 'asdas', 'sadasd', 'asasd', 'sdsda', 'sdasdasd', 'asdas', 'dasd', 'asd', '982719129', 'SMP Negeri Batang', 'images/foto/foto_asdasdasd.jpg', 'images/ijazahdepan/ijazahdpn_asdasdasd.jpg', 'images/ijazahbelakang/ijazahblkg_asdasdasd.jpg', 'Unverified', NULL);
+(15, 27, 'A', 'pengen banyak Be', 'rarar', 'L', 'asdasdasd', '2024-10-24', 'kljlkjkljlkjlkjkljkljklj', '11', '1107', '1107062', '1107062026', 'indonesia', '085251234551', '23', 'jkhkjhkjh', 'SMA', 'Wiraswasta', 'Islam', '08808888888', '22', 'jkljkljlkjlkjklj', 'SMP', 'PNS', 'Budha', '08129830299933', '22', 'kjljkljkljlklj', 'Wiraswasta', '088858261651231', 'TIDAK', 'belum sama sekali', 'images/foto/foto_A.jpg', 'images/ijazahdepan/ijazahdpn_A.jpg', 'images/ijazahbelakang/ijazahblkg_A.jpg', 'Verified', '2024-10-11'),
+(16, 29, 'o', 'untuk menjadi pe', 'al fikri', 'L', 'putussibau', '2003-01-29', 'jl. kalimantan', '61', '6108', '6108080', '6108080003', 'indonesia', '081549260903', '60', 'kamarsyah', 'SMA', 'TNI/Polri', 'Islam', '081549462423', '55', 'sitah', 'SMP', 'Tidak Bekerja', 'Islam', '081245439232', '24', 'nopal', 'PHL', '081589270204', 'tidak', 'belum', 'images/foto/foto_o.jpg', 'images/ijazahdepan/ijazahdpn_o.jpg', 'images/ijazahbelakang/ijazahblkg_o.jpg', 'Verified', '2024-11-06'),
+(17, 30, 'A', 'Bergabung dengan', 'naufal fathin', 'L', 'singkawang', '2002-03-15', 'jl. pahlawan', '61', '6172', '6172050', '6172050001', 'indonesia', '081548260402', '67', 'abdullah', 'SMA', 'PNS', 'Islam', '081548465402', '45', 'samsiah', 'SMP', 'Tidak Bekerja', 'Islam', '081542263405', '23', 'muhammad faris', 'Tidak Bekerja', '081268267402', 'tidak', 'belum', 'images/foto/foto_A.jpg', 'images/ijazahdepan/ijazahdpn_A.jpg', 'images/ijazahbelakang/ijazahblkg_A.jpg', 'Verified', '2024-11-06'),
+(18, 31, 'o', 'Dengan aktif di ', 'faris murtadha', 'L', 'singkawang', '2001-07-15', 'jl. veteran', '61', '6172', '6172050', '6172050001', 'indonesia', '081546297823', '65', 'rudi hartono', 'SMA', 'PNS', 'Islam', '081546247826', '55', 'tri astuti', 'SMP', 'Tidak Bekerja', 'Islam', '081547697893', '22', 'alfatih', 'Wiraswasta', '081246997623', 'tidak', 'belum', 'images/foto/foto_o.jpg', 'images/ijazahdepan/ijazahdpn_o.jpg', 'images/ijazahbelakang/ijazahblkg_o.jpg', 'Verified', '2024-11-06'),
+(19, 32, 'o', 'Bergabung dengan', 'al fikri imansyah', 'L', 'putussibau', '2004-02-29', 'jl. alianyang', '61', '6172', '6172050', '6172050006', 'indonesia', '081549260903', '67', 'hartono', 'SMA', 'TNI/Polri', 'Islam', '081548373542', '57', 'sulastri', 'SMA', 'Tidak Bekerja', 'Islam', '081225374532', '24', 'aden alian', 'Pegawai Swasta', '081242640704', 'tidak', 'belum', 'images/foto/foto_o.jpg', 'images/ijazahdepan/ijazahdpn_o.jpg', 'images/ijazahbelakang/ijazahblkg_o.jpg', 'Verified', '2024-11-06'),
+(20, 33, 'B', 'Dalam berbagai k', 'hasan nurdin', 'L', 'singkawang', '2005-04-23', 'jl. tani', '61', '6172', '6172050', '6172050001', 'indonesia', '081245369878', '65', 'syarifudin', 'SD', 'Wiraswasta', 'Islam', '081525267342', '68', 'siti aminah', 'SMP', 'Tidak Bekerja', 'Islam', '081525456789', '55', 'aldi alpian', 'Pegawai Swasta', '081255238732', 'tidak', 'belum', 'images/foto/foto_B.jpg', 'images/ijazahdepan/ijazahdpn_B.jpg', 'images/ijazahbelakang/ijazahblkg_B.jpg', 'Verified', '2024-11-06'),
+(21, 34, 'O', 'Dalam berbagai k', 'mulyadi', 'L', '', '2006-06-22', 'jl. terminal induk', '61', '6172', '6172050', '6172050001', 'indonesia', '081542963224', '62', 'hardiansyah', 'SMA', 'TNI/Polri', 'Islam', '081525246562', '58', 'aisyah ', 'S1', 'Pegawai Swasta', 'Islam', '081256523462', '32', 'maman ', 'Pegawai Swasta', '081542376521', 'tidak', 'belum', 'images/foto/foto_O.jpg', 'images/ijazahdepan/ijazahdpn_O.jpg', 'images/ijazahbelakang/ijazahblkg_O.jpg', 'Verified', '2024-11-06'),
+(22, 35, 'B', 'Di remaja masjid', 'muhammad haikal', 'L', '', '2004-07-22', 'jl. pelangi', '61', '6172', '6172040', '6172040004', 'indonesia', '081246328932', '77', 'budi hariadi', 'S1', 'PNS', 'Islam', '081524257321', '63', 'khadijah', 'S1', 'Pegawai Swasta', 'Islam', '081545462932', '22', 'oval rahdian', 'Tidak Bekerja', '081578324562', 'tidak', 'belum', 'images/foto/foto_B.jpg', 'images/ijazahdepan/ijazahdpn_B.jpg', 'images/ijazahbelakang/ijazahblkg_B.jpg', 'Verified', '2024-11-06'),
+(23, 36, 'o', 'asdasdsad', 'asdasd', 'L', 'asdsad', '2024-12-12', 'asdas', '61', '6102', '6102040', '6102040015', 'inggris', '123123123', '12', 'sadad', 'SMA', 'PNS', 'Islam', '12312312312', '21', 'yahya', 'SMP', 'Tidak Bekerja', 'Islam', '123123123', '12', 'qweqwe', 'Wiraswasta', '1231312312', 'tidak', 'asdasd', 'images/foto/foto_o.jpg', 'images/ijazahdepan/ijazahdpn_o.jpg', 'images/ijazahbelakang/ijazahblkg_o.jpg', 'Verified', '2024-12-04');
 
 -- --------------------------------------------------------
 
@@ -86134,11 +86231,31 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`adminid`);
 
 --
+-- Indeks untuk tabel `anggota`
+--
+ALTER TABLE `anggota`
+  ADD PRIMARY KEY (`anggotaid`);
+
+--
 -- Indeks untuk tabel `districts`
 --
 ALTER TABLE `districts`
   ADD PRIMARY KEY (`id`),
   ADD KEY `districts_id_index` (`regency_id`);
+
+--
+-- Indeks untuk tabel `kegiatan`
+--
+ALTER TABLE `kegiatan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `pilihan_kegiatan`
+--
+ALTER TABLE `pilihan_kegiatan`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `anggota_id` (`anggota_id`),
+  ADD KEY `kegiatan_id` (`kegiatan_id`);
 
 --
 -- Indeks untuk tabel `provinces`
@@ -86180,19 +86297,37 @@ ALTER TABLE `villages`
 -- AUTO_INCREMENT untuk tabel `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `adminid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `adminid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT untuk tabel `anggota`
+--
+ALTER TABLE `anggota`
+  MODIFY `anggotaid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT untuk tabel `kegiatan`
+--
+ALTER TABLE `kegiatan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT untuk tabel `pilihan_kegiatan`
+--
+ALTER TABLE `pilihan_kegiatan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT untuk tabel `userdata`
 --
 ALTER TABLE `userdata`
-  MODIFY `userdataid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `userdataid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -86203,6 +86338,13 @@ ALTER TABLE `userdata`
 --
 ALTER TABLE `districts`
   ADD CONSTRAINT `districts_regency_id_foreign` FOREIGN KEY (`regency_id`) REFERENCES `regencies` (`id`);
+
+--
+-- Ketidakleluasaan untuk tabel `pilihan_kegiatan`
+--
+ALTER TABLE `pilihan_kegiatan`
+  ADD CONSTRAINT `pilihan_kegiatan_ibfk_1` FOREIGN KEY (`anggota_id`) REFERENCES `anggota` (`anggotaid`) ON DELETE CASCADE,
+  ADD CONSTRAINT `pilihan_kegiatan_ibfk_2` FOREIGN KEY (`kegiatan_id`) REFERENCES `kegiatan` (`id`) ON DELETE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `regencies`
