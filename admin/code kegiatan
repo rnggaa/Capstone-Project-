@@ -1,0 +1,96 @@
+<!-- <?php
+        include '../dbconnect.php';
+        include '../cek.php';
+        if ($role !== 'Admin') {
+            header("location:../login.php");
+        };
+        // Proses tambah kegiatan
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['kegiatanbaru'])) {
+            $nama_kegiatan = $_POST['nama_kegiatan'];
+            $tanggal = $_POST['tanggal'];
+            $waktu = $_POST['waktu'];
+            $deskripsi = $_POST['deskripsi'];
+
+            $insert = mysqli_query($conn, "INSERT INTO kegiatan (nama_kegiatan, tanggal, waktu, deskripsi) VALUES ('$nama_kegiatan', '$tanggal', '$waktu', '$deskripsi')");
+
+            if ($insert) {
+                // Redirect to avoid form resubmission
+                header("Location: kegiatan.php"); // Replace with your actual page
+                exit(); // Ensure no more code is executed after the redirect
+            } else {
+                echo "<div class='alert alert-warning'>Gagal tambah kegiatan baru.</div>";
+            }
+        }
+
+        // Proses hapus kegiatan
+        if (isset($_POST['hapus'])) {
+            $idkegiatan = $_POST['idkegiatan'];
+            $query = mysqli_query($conn, "DELETE FROM kegiatan WHERE id='$idkegiatan'");
+            if ($query) {
+                echo "<div class='alert alert-success'>Berhasil hapus kegiatan.</div>";
+            } else {
+                echo "<div class='alert alert-warning'>Gagal hapus kegiatan.</div>";
+            }
+        }
+
+        // Ambil data kegiatan
+        $result = mysqli_query($conn, "SELECT * FROM kegiatan ORDER BY id ASC");
+        $activities = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $activities[] = $row; // Store each row in the activities array
+        }
+        ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Kegiatan Remaja Masjid</title>
+    <link rel="stylesheet" href="path/to/bootstrap.min.css"> <!-- Ganti dengan path Bootstrap Anda -->
+</head>
+
+<body>
+    <div class="container">
+        <h2>Tambah Kegiatan</h2>
+        <form method="POST">
+            <input type="text" name="nama_kegiatan" placeholder="Nama Kegiatan" required>
+            <input type="date" name="tanggal" required>
+            <input type="time" name="waktu" required>
+            <textarea name="deskripsi" placeholder="Deskripsi"></textarea>
+            <button type="submit" name="kegiatanbaru">Tambah Kegiatan</button>
+        </form>
+
+        <h2>Daftar Kegiatan</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nama Kegiatan</th>
+                    <th>Tanggal</th>
+                    <th>Waktu</th>
+                    <th>Deskripsi</th>
+                    <th>Opsi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($activities as $activity) { ?>
+                    <tr>
+                        <td><?php echo $activity['nama_kegiatan']; ?></td>
+                        <td><?php echo $activity['tanggal']; ?></td>
+                        <td><?php echo $activity['waktu']; ?></td>
+                        <td><?php echo $activity['deskripsi']; ?></td>
+                        <td>
+                            <form method="POST">
+                                <input type="hidden" name="idkegiatan" value="<?php echo $activity['id']; ?>">
+                                <button type="submit" name="hapus" class="btn btn-danger">Hapus</button>
+                            </form>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+    <script src="path/to/bootstrap.min.js"></script> <!-- Ganti dengan path Bootstrap Anda -->
+</body>
+
+</html>a -->
